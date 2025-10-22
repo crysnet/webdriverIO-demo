@@ -1,0 +1,31 @@
+import type { Options } from "@wdio/types";
+
+export const sharedConfig: Partial<Options.Testrunner> = {
+  runner: "local",
+  tsConfigPath: "../tsconfig.json",
+  automationProtocol: "webdriver",
+  specs: ["../src/features/**/*.feature"],
+  maxInstances: 2,
+  logLevel: "info",
+  bail: 0,
+  baseUrl: "https://www.saucedemo.com/",
+  waitforTimeout: 10000,
+  connectionRetryTimeout: 120000,
+  connectionRetryCount: 3,
+  framework: "cucumber",
+  specFileRetries: 0,
+  specFileRetriesDelay: 5,
+  reporters: ["spec"],
+  cucumberOpts: {
+    require: ["src/step-definitions/**/*.steps.ts"],
+    backtrace: false,
+    dryRun: false,
+    failFast: false,
+    snippets: true,
+    source: true,
+    strict: false,
+    tagExpression: "",
+    timeout: 60000,
+    ignoreUndefinedDefinitions: false,
+  },
+};

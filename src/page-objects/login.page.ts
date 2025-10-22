@@ -1,30 +1,34 @@
 import Page from "./page.js";
 
 class LoginPage extends Page {
+  constructor() {
+    super();
+  }
+
   public get inputUsername() {
-    return $('input[data-test="username"]');
+    return this.locate.elementByDataTest("username");
   }
 
   public get inputPassword() {
-    return $('input[data-test="password"]');
+    return this.locate.elementByDataTest("password");
   }
 
   public get btnSubmit() {
-    return $('input[type="submit"]');
+    return this.locate.elementByType("submit");
   }
 
   public get invalidLoginMessage() {
-    return $('[data-test="error"]');
+    return this.locate.elementByDataTest("error");
   }
 
   public async login(username: string, password: string) {
-    await this.inputUsername.setValue(username);
-    await this.inputPassword.setValue(password);
-    await this.btnSubmit.click();
+    await this.command.setValue(this.inputUsername, username);
+    await this.command.setValue(this.inputPassword, password);
+    await this.command.click(this.btnSubmit);
   }
 
-  public open() {
-    return super.open("/");
+  public navigateTo() {
+    return this.open("/");
   }
 }
 

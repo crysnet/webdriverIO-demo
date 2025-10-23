@@ -66,8 +66,6 @@ touch .env
 BASE_URL=https://www.saucedemo.com
 ```
 
-**Note**: The `.env` file should not be committed to version control. Make sure it's included in your `.gitignore` file.
-
 ## Project Structure
 
 ```

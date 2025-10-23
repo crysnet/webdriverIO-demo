@@ -1,4 +1,4 @@
-# 
+#
 
 # Halo Demo - Test Automation
 
@@ -11,6 +11,7 @@ Before getting started, make sure you have installed:
 - **Node.js** (version 18.x or higher)
 - **npm** (comes with Node.js)
 - **Git** for version control
+- **Java JDK** (version 8 or higher) - Required for Allure reports
 
 ### Verify installation:
 
@@ -18,16 +19,19 @@ Before getting started, make sure you have installed:
 node --version
 npm --version
 git --version
+java -version
 ```
 
 ## Steps to Clone the Project
 
 1. Clone the repository:
+
 ```bash
 git clone <REPOSITORY_URL>
 ```
 
 2. Navigate to the project directory:
+
 ```bash
 cd webdriverIO-demo
 ```
@@ -35,14 +39,34 @@ cd webdriverIO-demo
 ## Steps to Install Dependencies
 
 1. Install project dependencies:
+
 ```bash
 npm install
 ```
 
 2. Verify that WebdriverIO was installed correctly:
+
 ```bash
 npx wdio --version
 ```
+
+## Environment Configuration
+
+Create a `.env` file in the root directory of the project to configure the base URL:
+
+1. **Create the .env file**:
+
+```bash
+touch .env
+```
+
+2. **Add the following content to .env**:
+
+```env
+BASE_URL=https://www.saucedemo.com
+```
+
+**Note**: The `.env` file should not be committed to version control. Make sure it's included in your `.gitignore` file.
 
 ## Project Structure
 
@@ -67,6 +91,8 @@ webdriverIO-demo/
 │       ├── assert.ts
 │       ├── command.ts
 │       └── locate.ts
+├── .env                        # Environment variables (BASE_URL)
+├── .gitignore                  # Git ignore file
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -76,13 +102,14 @@ webdriverIO-demo/
 
 ### Available Scripts from package.json
 
-| Script | Description | Command |
-|--------|-------------|---------|
-| **Cross-browser** | Run tests on multiple browsers | `npm run wdio` |
-| **Chrome** | Run tests only on Chrome | `npm run wdio:chrome` |
-| **Firefox** | Run tests only on Firefox | `npm run wdio:firefox` |
-| **Smoke Tests** | Run tests tagged with @smoke | `npm run wdio:smoke` |
+| Script               | Description                       | Command                   |
+| -------------------- | --------------------------------- | ------------------------- |
+| **Cross-browser**    | Run tests on multiple browsers    | `npm run wdio`            |
+| **Chrome**           | Run tests only on Chrome          | `npm run wdio:chrome`     |
+| **Firefox**          | Run tests only on Firefox         | `npm run wdio:firefox`    |
+| **Smoke Tests**      | Run tests tagged with @smoke      | `npm run wdio:smoke`      |
 | **Regression Tests** | Run tests tagged with @regression | `npm run wdio:regression` |
+| **Allure Report**    | Generate and serve Allure report  | `npm run allure:serve`    |
 
 ### Usage Examples
 
@@ -101,18 +128,73 @@ npm run wdio:smoke
 
 # Run only regression tests (cross-browser)
 npm run wdio:regression
+
+# Generate and serve Allure HTML report (after test execution)
+npm run allure:serve
 ```
+
+## Test Reports
+
+This project uses **Allure** for generating comprehensive test reports with:
+
+- Test execution history
+- Screenshots on failures
+- Step-by-step execution details
+- Trend analysis
+
+### Generating Reports
+
+1. **Run tests first** (they generate the allure-results):
+
+```bash
+npm run wdio:chrome
+```
+
+2. **Generate and serve the report**:
+
+```bash
+npm run allure:serve
+```
+
+The report will automatically open in your default browser at `http://localhost:some-port`.
 
 ## Available Tags
 
 - `@smoke` - Smoke tests for critical functionalities
 - `@regression` - Complete regression tests
+- `@product` - Product-related functionality tests
+- `@cart` - Shopping cart functionality tests
+- `@checkout` - Checkout process tests
 
 ## Troubleshooting
+
+### Common Issues
+
+1. **Java JDK not found**: Make sure Java JDK is installed and available in your PATH
+
+   ```bash
+   java -version
+   ```
+
+2. **Allure command not found**: The allure command is bundled with the project dependencies
+
+3. **Browser driver issues**: WebdriverIO automatically manages browser drivers
+
+4. **BASE_URL not configured**: Make sure you have created the `.env` file with the correct BASE_URL
+
+   ```bash
+   # Check if .env file exists
+   ls -la .env
+
+   # Verify BASE_URL is set
+   cat .env
+   ```
+
 ### Logs and Debugging
 
-Test execution reports are automatically generated and can be found in:
-- Console output during execution
+- **Console output**: Real-time execution logs during test runs
+- **Allure reports**: Comprehensive HTML reports with screenshots and execution details
+- **allure-results/**: Raw test execution data (automatically generated)
 
 ## Contributing
 

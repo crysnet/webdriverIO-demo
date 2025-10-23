@@ -1,5 +1,5 @@
 export default class Assert {
-  async toBeDisplayed(element: ChainablePromiseElement) {
+  async toBeDisplayed(element: ChainablePromiseElement | WebdriverIO.Element) {
     try {
       await expect(element).toBeDisplayed();
     } catch (error) {
@@ -8,7 +8,10 @@ export default class Assert {
     }
   }
 
-  async toHaveText(element: ChainablePromiseElement, expectedText: string) {
+  async toHaveText(
+    element: ChainablePromiseElement | WebdriverIO.Element,
+    expectedText: string
+  ) {
     try {
       await expect(element).toHaveText(expectedText);
     } catch (error) {
@@ -20,7 +23,10 @@ export default class Assert {
     }
   }
 
-  async containsText(element: ChainablePromiseElement, text: string) {
+  async containsText(
+    element: ChainablePromiseElement | WebdriverIO.Element,
+    text: string
+  ) {
     try {
       await expect(element).toHaveText(text, {
         containing: true,
@@ -34,11 +40,20 @@ export default class Assert {
     }
   }
 
-  async toBeExisting(element: ChainablePromiseElement) {
+  async toBeExisting(element: ChainablePromiseElement | WebdriverIO.Element) {
     try {
       await expect(element).toBeExisting();
     } catch (error) {
       console.error("Element does not exist:", error);
+      throw error;
+    }
+  }
+
+  async toBeEqual<T>(value: T, expectedValue: T) {
+    try {
+      await expect(value).toBe(expectedValue);
+    } catch (error) {
+      console.error("Element is not equal:", error);
       throw error;
     }
   }

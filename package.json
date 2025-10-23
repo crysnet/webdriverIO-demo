@@ -6,9 +6,11 @@
     "wdio:chrome": "wdio run ./config/wdio.chrome.conf.ts",
     "wdio:firefox": "wdio run ./config/wdio.firefox.conf.ts",
     "wdio:smoke": "npm run wdio -- --cucumberOpts.tagExpression='@smoke'",
-    "wdio:regression": "npm run wdio -- --cucumberOpts.tagExpression='@regression'"
+    "wdio:regression": "npm run wdio -- --cucumberOpts.tagExpression='@regression'",
+    "allure:serve": "allure serve allure-results --clean"
   },
   "devDependencies": {
+    "@wdio/allure-reporter": "^9.20.0",
     "@wdio/cli": "^9.20.0",
     "@wdio/cucumber-framework": "^9.20.0",
     "@wdio/globals": "^9.17.0",

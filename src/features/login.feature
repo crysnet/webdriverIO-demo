@@ -1,4 +1,4 @@
-Feature: Swag Labs Website
+Feature: Swag Labs Login Page
 
   @regression
   Scenario Outline: As a user, I can log into the secure area
@@ -7,7 +7,7 @@ Feature: Swag Labs Website
     Then I should see a title saying <message>
 
     Examples:
-      | username | password          | message                       |
+      | username      | password     | message  |
       | standard_user | secret_sauce | Products |
 
   @smoke
@@ -17,6 +17,6 @@ Feature: Swag Labs Website
     Then I should see an invalid alert
 
     Examples:
-      | username      | password | 
+      | username      | password |
       | standard_user | barfoo   |
 

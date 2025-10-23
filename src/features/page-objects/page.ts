@@ -1,6 +1,6 @@
-import Locate from "../support/locate";
-import Assert from "../support/assert";
-import Command from "../support/command";
+import Locate from "../../support/locate";
+import Assert from "../../support/assert";
+import Command from "../../support/command";
 
 /**
  * main page object containing all methods, selectors and functionality

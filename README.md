@@ -1,6 +1,6 @@
 #
 
-# Halo Demo - Test Automation
+# Demo - Test Automation
 
 End-to-End test automation project using WebdriverIO with Cucumber + Typescript for Swag Labs website.
 

@@ -1,5 +1,5 @@
 {
-  "name": "halo-demo",
+  "name": "demo",
   "type": "module",
   "scripts": {
     "wdio": "wdio run ./config/wdio.cross-browser.conf.ts",
